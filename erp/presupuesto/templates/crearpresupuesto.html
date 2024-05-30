@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear  de Presupuesto</title>
+    <style>
+        /* Estilos para centrar el contenido de la página y configurar el fondo */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Estilos para el contenedor principal */
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        /* Estilos para el título principal */
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para los campos de entrada, área de texto y botones */
+        .container input, .container textarea, .container button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* Estilos específicos para los campos de fecha */
+        .container input[type="date"] {
+            padding-left: 8px;
+        }
+
+        /* Estilos para el botón de "Crear Solicitud" */
+        .container .submit-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Efecto hover para el botón "Crear Solicitud" */
+        .container .submit-button:hover {
+            background-color: #218838;
+        }
+
+        /* Estilos para el botón de "Cancelar" */
+        .container .cancel-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Efecto hover para el botón "Cancelar" */
+        .container .cancel-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Estilos para las etiquetas de los campos */
+        .container label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: center;
+        }
+
+        /* Contenedor para los botones */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group button {
+            width: 48%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Título principal -->
+        <h1>Crear presupuesto</h1>
+
+        <!-- Formulario para ingresar los detalles del presupuesto -->
+        <form>
+            <!-- Etiqueta y campo de entrada para la fecha de inicio -->
+            <label for="fecha-inicio">Fecha de inicio</label>
+            <input type="date" id="fecha-inicio">
+
+            <!-- Etiqueta y campo de entrada para el nombre -->
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Nombre">
+
+            <!-- Etiqueta y área de texto para la descripción -->
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" placeholder="Descripción"></textarea>
+
+            <!-- Etiqueta y campo de entrada para la fecha límite -->
+            <label for="fecha-limite">Fecha límite</label>
+            <input type="date" id="fecha-limite">
+
+            <!-- Etiqueta y campo de entrada para los gastos -->
+            <label for="gastos">Gastos</label>
+            <input type="number" id="gastos" step="0.01" placeholder="Gastos">
+
+            <!-- Grupo de botones para "Crear Solicitud" y "Cancelar" -->
+            <div class="button-group">
+                <button type="submit" class="submit-button">Crear Solicitud</button>
+                <button type="button" class="cancel-button">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
