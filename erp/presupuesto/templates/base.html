@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Título predeterminado{% endblock %}</title>
+    <style>
+        /* Estilos para la barra de navegación */
+        .navbar {
+            background-color: #512985; /* Color morado */
+            padding: 20px 40px; /* Espaciado interno más grande */
+            color: #fff; /* Color de texto */
+            display: flex;
+            justify-content: space-between; /* Distribuye los elementos a los extremos */
+            align-items: center; /* Centra verticalmente los elementos */
+            font-size: 18px; /* Tamaño de fuente más grande */
+        }
+
+        /* Contenedor para las opciones del menú */
+        .navbar .menu {
+            display: flex;
+            gap: 20px; /* Espacio entre los enlaces */
+        }
+
+        /* Estilos para los enlaces del menú */
+        .navbar a {
+            color: #fff; /* Color de texto */
+            text-decoration: none; /* Sin subrayado */
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 4px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+
+        /* Estilos para los enlaces del menú al pasar el ratón */
+        .navbar a:hover {
+            background-color: #7d33df; /* Color morado más claro */
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <!-- Opciones del menú a la derecha -->
+        <div class="menu">
+            <a href="ruta/a/presupuestos.html">Visualizar Presupuesto</a>
+            <a href="ruta/a/iniciar-sesion.html">Iniciar Sesión</a>
+        </div>
+    </div>
+
+    <!-- Contenido de la página -->
+    <div style="padding: 20px;">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+</body>
+</html>
