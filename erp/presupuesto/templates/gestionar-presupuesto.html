@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Presupuestos</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        /* Encabezado */
+        header {
+            background: #28a746;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Estilo de la lista de presupuestos */
+        .budget-list {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .budget-list h2 {
+            color: #333333;
+        }
+
+        .budget-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .budget-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .budget-list li span {
+            flex-grow: 1;
+        }
+
+        .budget-list .modify-btn,
+        .budget-list .delete-btn {
+            background: #28a746;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-left: 5px;
+            border-radius: 3px;
+        }
+
+        .budget-list .delete-btn {
+            background: #e74c3c;
+        }
+
+        /* Hover effects */
+        .budget-list .modify-btn:hover,
+        .budget-list .delete-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <header>
+            <h1>Gestión de Presupuestos</h1>
+        </header>
+
+        <!-- Lista de presupuestos -->
+        <section class="budget-list">
+            <h2>Presupuestos</h2>
+            <ul>
+                <li>
+                    <span>Presupuesto 1: $1000</span>
+                    <button class="modify-btn">Modificar</button>
+                    <button class="delete-btn">Borrar</button>
+                </li>
+                <li>
+                    <span>Presupuesto 2: $1500</span>
+                    <button class="modify-btn">Modificar</button>
+                    <button class="delete-btn">Borrar</button>
+                </li>
+                <!-- Añadir más elementos según sea necesario -->
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
