@@ -4,5 +4,7 @@ app_name = 'presupuesto'
 urlpatterns = [
     path('', views.home_view, name='home'),
     path('crearPresupuesto/', views.crearPresupuesto_View, name='crearPresupuesto'),
+    path('mostrarPresupuestos/', views.mostrarPresupuesto_View, name='mostrarPresupuestos'),
     path('registro/', views.registro_view, name='registro'),
+    
 ]

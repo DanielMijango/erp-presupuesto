@@ -14,15 +14,30 @@
             justify-content: space-between; /* Distribuye los elementos a los extremos */
             align-items: center; /* Centra verticalmente los elementos */
             font-size: 18px; /* Tamaño de fuente más grande */
+            position: fixed; /* Fijar la barra de navegación en la parte superior */
+            width: 100%; /* Asegurar que ocupe todo el ancho */
+            top: 0; /* Fijar en la parte superior */
+            left: 0; /* Fijar en la parte izquierda */
+            z-index: 1000; /* Asignar un z-index alto para que esté "por encima" de la imagen de fondo */
         }
 
-        /* Contenedor para las opciones del menú */
+        /* Estilos para los enlaces del menú */
         .navbar .menu {
             display: flex;
             gap: 20px; /* Espacio entre los enlaces */
         }
 
-        /* Estilos para los enlaces del menú */
+        /* Estilos para los enlaces de la izquierda */
+        .navbar .menu-left {
+            margin-right: auto; /* Empuja los enlaces hacia la izquierda */
+        }
+
+        /* Estilos para los enlaces de la derecha */
+        .navbar .menu-right {
+            margin-left: auto; /* Empuja los enlaces hacia la derecha */
+            margin-right: 60px;
+        }
+        /* Estilos para los enlaces del menú al pasar el ratón */
         .navbar a {
             color: #fff; /* Color de texto */
             text-decoration: none; /* Sin subrayado */
@@ -35,23 +50,47 @@
         .navbar a:hover {
             background-color: #7d33df; /* Color morado más claro */
         }
+
+        /* Estilos específicos para los enlaces de la izquierda */
+       
+
+        /* Estilo para el botón "Iniciar Sesión" */
+        .navbar .menu-right a:first-child {
+            color: #512985; /* Cambiar el color del texto */
+            background-color: #fff; /* Cambiar el color de fondo */
+            transition: color 0.3s, background-color 0.3s; /* Añadir transiciones suaves */
+        }
+
+        /* Estilo al pasar el ratón sobre el botón "Iniciar Sesión" */
+        .navbar .menu-right a:first-child:hover {
+            color: #fff; /* Cambiar el color del texto al pasar el ratón */
+            background-color: #7d33df; /* Cambiar el color de fondo al pasar el ratón */
+        }
     </style>
 </head>
 <body>
     <!-- Barra de navegación -->
     <div class="navbar">
+        <!-- Opciones del menú a la izquierda -->
+        <div class="menu-left">
+            <a href="/mostrarPresupuestos">Ver Presupuestos</a>
+        
+        </div>
         <!-- Opciones del menú a la derecha -->
-        <div class="menu">
-            <a href="ruta/a/presupuestos.html">Visualizar Presupuesto</a>
-            <a href="ruta/a/iniciar-sesion.html">Iniciar Sesión</a>
+        <div class="menu-right">
+            <a href="">Iniciar sesión</a>
+            <a href="/registro/" >Registrarse</a>
         </div>
     </div>
 
     <!-- Contenido de la página -->
-    <div style="padding: 20px;">
+    <div class="content">
         {% block content %}
         
         {% endblock %}
     </div>
 </body>
 </html>
+
+
+

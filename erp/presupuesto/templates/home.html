@@ -2,48 +2,49 @@
 
 {% block content %}
 <style>
-    /* Estilos generales para el cuerpo del documento */
+    /* Estilos para el cuerpo del documento */
     body {
-        font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-    }
-
-    /* Contenedor de la imagen de fondo */
-    .hero {
-        position: relative;
+        font-family: Arial, sans-serif;
+        background: url('https://it.ditech.es/wp-content/uploads/2024/03/6-1024x576.png') no-repeat center center fixed;
+        background-size: cover;
         height: 100vh;
-        background: url('https://it.ditech.es/wp-content/uploads/2024/03/6-1024x576.png') no-repeat center center/cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        position: relative; /* Para que los elementos internos sean posicionados relativos a este contenedor */
     }
 
-    /* Superposición de color para la imagen de fondo */
+    /* Estilo para la superposición semi-transparente */
     .overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según tus necesidades */
+        background-color: rgba(0, 0, 0, 0.548); /* Color negro con 50% de opacidad */
     }
 
-    /* Texto centrado en la imagen de fondo */
-    .hero-text {
-        position: relative;
+    /* Estilos para el texto */
+    .text-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Para centrar vertical y horizontalmente */
         color: white;
-        font-size: 64px;
-        z-index: 1;
+        text-align: center;
+        font-size: 45px;
     }
 </style>
 
 <!-- Contenido de la página -->
-<div class="hero">
-    <div class="overlay"></div>
-    <div class="hero-text">Módulo de Presupuestos</div>
-    <div>Te amo Mijango</div>
+<div class="content">
+    {% block home_content %}
+    <div class="overlay"></div> <!-- Superposición semi-transparente -->
+    <div class="text-center">
+        <h1><b>Módulo de Presupuestos</b></h1>
+        <!-- Puedes agregar más contenido aquí -->
+    </div>
+    {% endblock %}
 </div>
 {% endblock %}
+
 

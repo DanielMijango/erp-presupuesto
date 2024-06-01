@@ -13,6 +13,9 @@ def home_view(request):
 def crearPresupuesto_View(request):
     return render(request, 'crearpresupuesto.html')
 
+def mostrarPresupuesto_View(request):
+     return render(request,'mostrar-presupuestos.html')
+
 def registro_view(request): 
 
     if request.method == 'GET':

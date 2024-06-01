@@ -1,67 +1,63 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Presupuestos</title>
-    <style>
-        /* Estilos generales para el cuerpo del documento */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra horizontalmente */
-        }
+{% extends 'base.html' %}
 
-        /* Estilos para el título */
-        h1 {
-            margin-bottom: 20px;
-        }
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Centra horizontalmente */
+    }
 
-        /* Estilos para la tabla */
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 800px; /* Ajusta el ancho máximo */
-        }
+    /* Estilos para la tabla y su contenedor */
+    .table-container {
+        margin-top: 100px;
+        /* Espacio desde la parte superior */
+    }
 
-        /* Estilos para las celdas de la tabla */
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 800px;
+        /* Ajusta el ancho máximo */
+        margin: auto;
+        /* Centra la tabla horizontalmente */
+    }
 
-        /* Estilos para los botones de la tabla */
-        .action-button {
-            padding: 8px 20px; /* Ajusta el tamaño de los botones */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px; /* Tamaño del texto */
-            transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
-        }
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        font-family: Arial, sans-serif;
+        /* Cambia la tipografía */
+    }
 
-        .edit-button {
-            background-color: #4CAF50;
-            color: white;
-        }
+    /* Estilos para los encabezados de la tabla */
+    th {
+        background-color: #512985; /* Color morado */
+        color: #fff; /* Color de texto */
+        font-weight: bold; /* Texto en negrita */
+        padding: 10px; /* Espaciado interno */
+    }
 
-        .delete-button {
-            background-color: #f44336;
-            color: white;
-        }
+    /* Estilos para el título */
+    h1 {
+        text-align: center;
+        /* Centra el título horizontalmente */
+        font-family: Arial, sans-serif;
+        /* Cambia la tipografía */
+    }
+</style>
 
-       
-    </style>
-</head>
-<body>
+<!-- Tabla de presupuestos -->
+<div class="table-container">
     <!-- Encabezado de la lista -->
-    <h1>Lista de Presupuestos del Centro comercial</h1>
-    <!-- Tabla de presupuestos -->
+    <h1>Lista de Presupuestos del Centro Comercial</h1>
     <table>
         <thead>
             <tr>
@@ -70,7 +66,7 @@
                 <th>Descripción</th>
                 <th>Fecha Límite</th>
                 <th>Gastos</th>
-                
+                <!-- Añade aquí más columnas si es necesario -->
             </tr>
         </thead>
         <tbody>
@@ -82,12 +78,9 @@
                 <td>31/12/2024</td>
                 <td>$5000</td>
                 <!-- Botones de editar y eliminar -->
-               
             </tr>
             <!-- Más filas de presupuesto pueden seguir el mismo formato -->
         </tbody>
     </table>
-
-    <!-- Scripts para funcionalidad adicional si es necesario -->
-</body>
-</html>
+</div>
+{% endblock %}
