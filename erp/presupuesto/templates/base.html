@@ -73,7 +73,14 @@
     <div class="navbar">
         <!-- Opciones del menú a la izquierda -->
         <div class="menu-left">
+            <a href="/">Home</a>
             <a href="/mostrarPresupuestos">Ver Presupuestos</a>
+            
+            {% if  user.is_authenticated %}
+            <a href="/crearPresupuesto">Crear presupuesto</a>
+            <a href="/gestionarPresupuestos">Gestionar presupuestos</a>
+
+            {% endif %}
         
         </div>
         <!-- Opciones del menú a la derecha -->
@@ -84,6 +91,7 @@
             {% else %}
                 <!-- Puedes agregar otras opciones para usuarios autenticados aquí -->
                 <a href="/logout/">Cerrar sesión</a>
+
             {% endif %}
         </div>
     </div>

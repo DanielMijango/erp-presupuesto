@@ -4,83 +4,84 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
+        background-color: #4367b1;
         margin: 0;
         padding: 20px;
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        /* Centra horizontalmente */
+        height: 100vh;
     }
 
-    /* Estilos para la tabla y su contenedor */
+    /* Estilos para el contenedor principal */
     .table-container {
-        margin-top: 100px;
-        /* Espacio desde la parte superior */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+    }
+    
+    /* Estilos para el título */
+    h1 {
+        font-family: Arial, sans-serif;
+        color: #512985;
+        margin-bottom: 20px;
     }
 
+    /* Estilos para la tabla */
     table {
         border-collapse: collapse;
         width: 100%;
-        max-width: 800px;
-        /* Ajusta el ancho máximo */
-        margin: auto;
-        /* Centra la tabla horizontalmente */
+        margin-top: 10px;
+        background-color: #f8f8f8;
     }
 
-    th,
-    td {
+    th, td {
         border: 1px solid #ccc;
         padding: 10px;
         text-align: left;
         font-family: Arial, sans-serif;
-        /* Cambia la tipografía */
     }
 
     /* Estilos para los encabezados de la tabla */
     th {
-        background-color: #512985; /* Color morado */
-        color: #fff; /* Color de texto */
-        font-weight: bold; /* Texto en negrita */
-        padding: 10px; /* Espaciado interno */
-    }
-
-    /* Estilos para el título */
-    h1 {
-        text-align: center;
-        /* Centra el título horizontalmente */
-        font-family: Arial, sans-serif;
-        /* Cambia la tipografía */
+        background-color: #512985;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
     }
 </style>
 
-<!-- Tabla de presupuestos -->
-<div class="table-container">
-    <!-- Encabezado de la lista -->
-    <h1>Lista de Presupuestos del Centro Comercial</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Fecha de Inicio</th>
-                <th>Descripción</th>
-                <th>Fecha Límite</th>
-                <th>Gastos</th>
-                <!-- Añade aquí más columnas si es necesario -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ejemplo de una fila de presupuesto -->
-            <tr>
-                <td>Presupuesto 1</td>
-                <td>01/01/2024</td>
-                <td>Descripción del presupuesto 1</td>
-                <td>31/12/2024</td>
-                <td>$5000</td>
-                <!-- Botones de editar y eliminar -->
-            </tr>
-            <!-- Más filas de presupuesto pueden seguir el mismo formato -->
-        </tbody>
-    </table>
+<!-- Contenedor principal -->
+<div class="background-container">
+    <div class="table-container">
+        <!-- Encabezado de la lista -->
+        <h1>Lista de Presupuestos del Centro Comercial</h1>
+        <!-- Tabla de presupuestos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Descripción</th>
+                    <th>Fecha Límite</th>
+                    <th>Gastos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Presupuesto 1</td>
+                    <td>01/01/2024</td>
+                    <td>Descripción del presupuesto 1</td>
+                    <td>31/12/2024</td>
+                    <td>$5000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 {% endblock %}
