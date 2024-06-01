@@ -1,57 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Título predeterminado{% endblock %}</title>
     <style>
-        /* Estilos para la barra de navegación */
         .navbar {
-            background-color: #512985; /* Color morado */
-            padding: 20px 40px; /* Espaciado interno más grande */
-            color: #fff; /* Color de texto */
+            background-color: #7400b8;
+            /* Color morado */
+            padding: 10px 20px;
+            /* Espaciado interno */
+            color: #fff;
+            /* Color de texto */
             display: flex;
-            justify-content: space-between; /* Distribuye los elementos a los extremos */
-            align-items: center; /* Centra verticalmente los elementos */
-            font-size: 18px; /* Tamaño de fuente más grande */
-        }
-
-        /* Contenedor para las opciones del menú */
-        .navbar .menu {
-            display: flex;
-            gap: 20px; /* Espacio entre los enlaces */
+            justify-content: space-between;
+            /* Distribuye los elementos a los extremos */
+            align-items: center;
+            /* Centra verticalmente los elementos */
+            font-size: 18px;
+            /* Tamaño de fuente más grande */
+            position: fixed;
+            /* Fijar la barra de navegación en la parte superior */
+            width: 100%;
+            /* Asegurar que ocupe todo el ancho */
+            top: 0;
+            /* Fijar en la parte superior */
+            left: 0;
+            /* Fijar en la parte izquierda */
+            z-index: 1000;
+            /* Asignar un z-index alto para que esté "por encima" de la imagen de fondo */
         }
 
         /* Estilos para los enlaces del menú */
+        .navbar .menu {
+            display: flex;
+            gap: 20px;
+            /* Espacio entre los enlaces */
+        }
+
+        /* Estilos para los enlaces de la izquierda */
+        .navbar .menu-left {
+            display: flex;
+            align-items: center;
+            /* Alinear verticalmente */
+            gap: 10px;
+            /* Espacio entre los elementos */
+        }
+
+        /* Estilos para los enlaces de la derecha */
+        .navbar .menu-right {
+            display: flex;
+            align-items: center;
+            /* Alinear verticalmente */
+            margin-right: 30px;
+            gap: 20px;
+            /* Espacio entre los elementos */
+        }
+
+        /* Estilos para los enlaces del menú al pasar el ratón */
         .navbar a {
-            color: #fff; /* Color de texto */
-            text-decoration: none; /* Sin subrayado */
-            padding: 10px 20px; /* Espaciado interno */
-            border-radius: 4px; /* Bordes redondeados */
-            transition: background-color 0.3s; /* Transición suave */
+            color: #fff;
+            /* Color de texto */
+            text-decoration: none;
+            /* Sin subrayado */
+            padding: 10px 20px;
+            /* Espaciado interno */
+            border-radius: 4px;
+            /* Bordes redondeados */
+            transition: background-color 0.3s;
+            /* Transición suave */
         }
 
         /* Estilos para los enlaces del menú al pasar el ratón */
         .navbar a:hover {
-            background-color: #7d33df; /* Color morado más claro */
+            background-color: #7d33df;
+            /* Color morado más claro */
+        }
+
+
+        /* Estilos específicos para los enlaces de la izquierda */
+
+
+        /* Estilo para el botón "Iniciar Sesión" */
+        .navbar .menu-right a:first-child {
+            color: #512985;
+            /* Cambiar el color del texto */
+            background-color: #fff;
+            /* Cambiar el color de fondo */
+            transition: color 0.3s, background-color 0.3s;
+            /* Añadir transiciones suaves */
+        }
+
+        /* Estilo al pasar el ratón sobre el botón "Iniciar Sesión" */
+        .navbar .menu-right a:first-child:hover {
+            color: #fff;
+            /* Cambiar el color del texto al pasar el ratón */
+            background-color: #7d33df;
+            /* Cambiar el color de fondo al pasar el ratón */
+        }
+
+        .navbar img {
+            height: 52px;
+            /* Ajustar la altura de la imagen */
+            margin-bottom: -10px;
+            width: auto;
+            /* Ajustar el ancho automáticamente */
+        }
+        .navbar .menu-left a {
+            margin-left: 20px; /* Ajustar el espacio después de la imagen */
         }
     </style>
 </head>
+
 <body>
     <!-- Barra de navegación -->
     <div class="navbar">
+        <!-- Opciones del menú a la izquierda -->
+        <div class="menu-left">
+            <img src="https://cdn-icons-png.flaticon.com/256/4917/4917552.png" alt="Logo">
+            <a href="/">Home</a>
+            <a href="/mostrarPresupuestos">Ver Presupuestos</a>
+
+            {% if user.is_authenticated %}
+            <a href="/crearPresupuesto">Crear presupuesto</a>
+            <a href="/gestionarPresupuestos">Gestionar presupuestos</a>
+
+            {% endif %}
+
+        </div>
         <!-- Opciones del menú a la derecha -->
-        <div class="menu">
-            <a href="ruta/a/presupuestos.html">Visualizar Presupuesto</a>
-            <a href="ruta/a/iniciar-sesion.html">Iniciar Sesión</a>
+        <div class="menu-right">
+            {% if not user.is_authenticated %}
+            <a href="/signin/">Iniciar sesión</a>
+            <a href="/registro/">Registrarse</a>
+            {% else %}
+            <!-- Puedes agregar otras opciones para usuarios autenticados aquí -->
+            <a href="/logout/">Cerrar sesión</a>
+
+            {% endif %}
         </div>
     </div>
 
     <!-- Contenido de la página -->
-    <div style="padding: 20px;">
+    <div class="content">
         {% block content %}
-        
+
         {% endblock %}
     </div>
 </body>
+
 </html>

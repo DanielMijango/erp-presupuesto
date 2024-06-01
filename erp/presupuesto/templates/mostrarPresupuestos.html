@@ -1,93 +1,226 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Presupuestos</title>
-    <style>
-        /* Estilos generales para el cuerpo del documento */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centra horizontalmente */
-        }
+{% extends 'base.html' %}
 
-        /* Estilos para el título */
-        h1 {
-            margin-bottom: 20px;
-        }
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color:#355883;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative; /* Asegura que los elementos posicionados absolutamente sean relativos al body */
+    }
 
-        /* Estilos para la tabla */
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 800px; /* Ajusta el ancho máximo */
-        }
+    /* Estilos para los cuadrados de fondo */
+    .square {
+        position: absolute;
+        opacity: 0.7; /* Para que los cuadrados no bloqueen completamente el fondo */
+        z-index: 0; /* Asegura que los cuadrados estén detrás del contenido */
+        transform: translate(-50%, -50%); /* Centra los cuadrados */
+    }
 
-        /* Estilos para las celdas de la tabla */
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
+    .square1 {
+        background-color: #2e6882; 
+        top: 50%;
+        left: 50%;
+        width: 90vw;
+        height: 100vh;
+    }
 
-        /* Estilos para los botones de la tabla */
-        .action-button {
-            padding: 8px 20px; /* Ajusta el tamaño de los botones */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px; /* Tamaño del texto */
-            transition: background-color 0.3s; /* Agrega una transición suave al color de fondo */
-        }
+    .square2 {
+        background-color: #388285; 
+        top: 50%;
+        left: 50%;
+        width: 70vw;
+        height: 100vh;
+    }
 
-        .edit-button {
-            background-color: #4CAF50;
-            color: white;
-        }
+    /* Estilos para el contenedor principal */
+    .table-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+        z-index: 1; /* Asegura que el contenedor esté por encima de los cuadrados */
+        position: relative; /* Asegura que el z-index funcione */
+    }
+    
+    /* Estilos para el título */
+    h1 {
+        font-family: Arial, sans-serif;
+        color: #000000;
+        margin-bottom: 20px;
+    }
 
-        .delete-button {
-            background-color: #f44336;
-            color: white;
-        }
+    /* Estilos para la tabla */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+        background-color: #f8f8f8;
+    }
 
-       
-    </style>
-</head>
-<body>
-    <!-- Encabezado de la lista -->
-    <h1>Lista de Presupuestos del Centro comercial</h1>
-    <!-- Tabla de presupuestos -->
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Fecha de Inicio</th>
-                <th>Descripción</th>
-                <th>Fecha Límite</th>
-                <th>Gastos</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ejemplo de una fila de presupuesto -->
-            <tr>
-                <td>Presupuesto 1</td>
-                <td>01/01/2024</td>
-                <td>Descripción del presupuesto 1</td>
-                <td>31/12/2024</td>
-                <td>$5000</td>
-                <!-- Botones de editar y eliminar -->
-               
-            </tr>
-            <!-- Más filas de presupuesto pueden seguir el mismo formato -->
-        </tbody>
-    </table>
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        font-family: Arial, sans-serif;
+    }
 
+    /* Estilos para los encabezados de la tabla */
+    th {
+        background-color: #512985;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    /* Estilos para los botones de acción */
+    .btn {
+        padding: 5px 10px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-edit {
+        background-color: #4CAF50;
+    }
+
+    .btn-delete {
+        background-color: #f44336;
+    }
+
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+
+    .btn-delete:hover {
+        background-color: #e53935;
+    }
+</style>
+
+<!-- Contenedor principal -->
+<div class="background-container">
+    <!-- Cuadrados de fondo -->
+    <div class="square square1"></div>
+    <div class="square square2"></div>
+   
+    <div class="table-container">
+        <!-- Encabezado de la lista -->
+        <h1>Lista de Presupuestos del Centro Comercial</h1>
+        <!-- Tabla de presupuestos -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Descripción</th>
+                    <th>Fecha Límite</th>
+                    <th>Gastos</th>
+                    {% if user.is_authenticated %}
+                    <th>Acciones</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Presupuesto 1</td>
+                    <td>01/01/2024</td>
+                    <td>Descripción del presupuesto 1</td>
+                    <td>31/12/2024</td>
+                    <td>$5000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Presupuesto 2</td>
+                    <td>15/02/2024</td>
+                    <td>Descripción del presupuesto 2</td>
+                    <td>14/02/2025</td>
+                    <td>$7500</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Presupuesto 3</td>
+                    <td>01/03/2024</td>
+                    <td>Descripción del presupuesto 3</td>
+                    <td>28/02/2025</td>
+                    <td>$3000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Presupuesto 4</td>
+                    <td>20/04/2024</td>
+                    <td>Descripción del presupuesto 4</td>
+                    <td>19/04/2025</td>
+                    <td>$4000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Presupuesto 5</td>
+                    <td>01/05/2024</td>
+                    <td>Descripción del presupuesto 5</td>
+                    <td>30/04/2025</td>
+                    <td>$6000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+<<<<<<<< HEAD:erp/presupuesto/templates/mostrar-presupuestos.html
+========
     <!-- Scripts para funcionalidad adicional si es necesario -->
 </body>
 </html>
+>>>>>>>> 31b8c16ca5d1e341499b50552a11a66cb96fd45c:erp/presupuesto/templates/mostrarPresupuestos.html
