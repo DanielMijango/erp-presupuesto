@@ -20,6 +20,9 @@ from django.urls import include, path
 urlpatterns = [
     path('', include('presupuesto.urls')),
     path('crearPresupuesto/', include('presupuesto.urls')),
-     path('registro/', include('presupuesto.urls')),
+    path('mostrarPresupuesto/', include('presupuesto.urls')),
+    path('registro/', include('presupuesto.urls')),
+    path('logout/', include('presupuesto.urls')),
+    path('signin/', include('presupuesto.urls')),
   
 ]
