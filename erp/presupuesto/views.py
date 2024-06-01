@@ -1,33 +1,18 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login , logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.db  import IntegrityError
-from .forms import PresupuestoForm
+from django.db import IntegrityError
+
 
 def home_view(request):
     return render(request, 'home.html')
 
 def crearPresupuesto_View(request):
-    if request.method=='GET':
-         return render(request, 'crearpresupuesto.html', {'form':PresupuestoForm})
-    else:
-         print(request.POST)
-    form = PresupuestoForm(request.POST)
-    if  form.is_valid():
-            form.save()
-    return  redirect('/mostrarPresupuestos/')
-
-
-
-def mostrarPresupuesto_View(request):
-     return render(request,'mostrar-presupuestos.html')
-
-def gestionarPresupuesto_View(request)  : 
-       return render(request,'gestionar-presupuesto.html')
+    return render(request, 'crearpresupuesto.html')
 
 def registro_view(request): 
     if request.method == 'GET':
@@ -42,7 +27,7 @@ def registro_view(request):
                      username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('/')
+                return redirect('mostrarPresupuestos/')
             except IntegrityError:
                  return render(request, 'registro.html',{
                     'form':UserCreationForm, 
@@ -50,27 +35,9 @@ def registro_view(request):
     } )          
     return render(request, 'registro.html',{
                     'form':UserCreationForm, 
-                    "error": 'contrasenias no coinciden'                   
+                    "error": 'contrasenias no coinciden'
 } )
 
 
-def cerrarSesion_view (request):
-    logout(request)
-    return  redirect('/')
-
-def inicioSesion_view(request):
-    if request.method == 'GET':
-          return render(request,'iniciosesion.html',{
-            'form': AuthenticationForm 
-    })
-    else:
-        user = authenticate (request, username=request.POST['username'], password=request.POST['password'] )  
-        if user is None:
-
-            return render(request,'iniciosesion.html',{
-            'form': AuthenticationForm,
-             'error' : 'nombre o contra invalidos'
-              })
-        else:
-             login(request, user)
-             return redirect('mostrarPresupuestos/')
+def mostrarPresupuestos_view(request):   
+    return render(request, 'mostrarPresupuestos.html')
