@@ -38,8 +38,6 @@
         height: 100vh;
     }
 
- 
-
     /* Estilos para el contenedor principal */
     .table-container {
         background-color: #fff;
@@ -68,7 +66,6 @@
         background-color: #f8f8f8;
     }
 
-
     th, td {
         border: 1px solid #ccc;
         padding: 10px;
@@ -83,6 +80,31 @@
         font-weight: bold;
         padding: 10px;
     }
+
+    /* Estilos para los botones de acción */
+    .btn {
+        padding: 5px 10px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-edit {
+        background-color: #4CAF50;
+    }
+
+    .btn-delete {
+        background-color: #f44336;
+    }
+
+    .btn-edit:hover {
+        background-color: #45a049;
+    }
+
+    .btn-delete:hover {
+        background-color: #e53935;
+    }
 </style>
 
 <!-- Contenedor principal -->
@@ -91,7 +113,6 @@
     <div class="square square1"></div>
     <div class="square square2"></div>
    
-
     <div class="table-container">
         <!-- Encabezado de la lista -->
         <h1>Lista de Presupuestos del Centro Comercial</h1>
@@ -104,6 +125,9 @@
                     <th>Descripción</th>
                     <th>Fecha Límite</th>
                     <th>Gastos</th>
+                    {% if user.is_authenticated %}
+                    <th>Acciones</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
@@ -113,6 +137,15 @@
                     <td>Descripción del presupuesto 1</td>
                     <td>31/12/2024</td>
                     <td>$5000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>Presupuesto 2</td>
@@ -120,6 +153,15 @@
                     <td>Descripción del presupuesto 2</td>
                     <td>14/02/2025</td>
                     <td>$7500</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>Presupuesto 3</td>
@@ -127,6 +169,15 @@
                     <td>Descripción del presupuesto 3</td>
                     <td>28/02/2025</td>
                     <td>$3000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>Presupuesto 4</td>
@@ -134,6 +185,15 @@
                     <td>Descripción del presupuesto 4</td>
                     <td>19/04/2025</td>
                     <td>$4000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
                 </tr>
                 <tr>
                     <td>Presupuesto 5</td>
@@ -141,6 +201,15 @@
                     <td>Descripción del presupuesto 5</td>
                     <td>30/04/2025</td>
                     <td>$6000</td>
+                    {% if user.is_authenticated %}
+                    <td>
+                        <a href="/" class="btn btn-edit">Editar</a>
+                        <form action="/" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                        </form>
+                    </td>
+                    {% endif %}
                 </tr>
             </tbody>
         </table>
@@ -148,8 +217,10 @@
 </div>
 
 {% endblock %}
-=======
+
+
+========
     <!-- Scripts para funcionalidad adicional si es necesario -->
 </body>
 </html>
->>>>>>> 31b8c16ca5d1e341499b50552a11a66cb96fd45c:erp/presupuesto/templates/mostrarPresupuestos.html
+>>>>>>>> 31b8c16ca5d1e341499b50552a11a66cb96fd45c:erp/presupuesto/templates/mostrarPresupuestos.html
