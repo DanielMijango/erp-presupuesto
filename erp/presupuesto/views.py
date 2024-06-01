@@ -6,12 +6,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.db  import IntegrityError
+from .forms import PresupuestoForm
 
 def home_view(request):
     return render(request, 'home.html')
 
 def crearPresupuesto_View(request):
-    return render(request, 'crearpresupuesto.html')
+    if request.method=='GET':
+         return render(request, 'crearpresupuesto.html', {'form':PresupuestoForm})
+    else:
+         print(request.POST)
+    form = PresupuestoForm(request.POST)
+    if  form.is_valid():
+            form.save()
+    return  redirect('/mostrarPresupuestos/')
+
+
 
 def mostrarPresupuesto_View(request):
      return render(request,'mostrar-presupuestos.html')
