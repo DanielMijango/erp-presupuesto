@@ -5,15 +5,32 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+<<<<<<< Updated upstream
 from django.db import IntegrityError
 
+=======
+from django.db  import IntegrityError
+from.forms import PresupuestoForm
+>>>>>>> Stashed changes
 
 def home_view(request):
     return render(request, 'home.html')
 
 def crearPresupuesto_View(request):
-    return render(request, 'crearpresupuesto.html')
+    return render(request, 'crearpresupuesto.html',{
+         'form': PresupuestoForm
 
+    } )
+
+<<<<<<< Updated upstream
+=======
+def mostrarPresupuesto_View(request):
+     return render(request,'mostrarPresupuestos.html')
+
+def gestionarPresupuesto_View(request)  : 
+       return render(request,'gestionar-presupuesto.html')
+
+>>>>>>> Stashed changes
 def registro_view(request): 
     if request.method == 'GET':
             return render(request, 'registro.html',{
