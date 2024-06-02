@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('presupuesto.urls')),
     path('crearPresupuesto/', include('presupuesto.urls')),
     path('mostrarPresupuesto/', include('presupuesto.urls')),
+    path('editarPresupuesto/<int:presupuesto_id>/', include('presupuesto.urls')),
     path('admin/', admin.site.urls),
     path('registro/', include('presupuesto.urls')),
     path('logout/', include('presupuesto.urls')),

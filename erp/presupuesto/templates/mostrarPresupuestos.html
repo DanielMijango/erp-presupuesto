@@ -137,9 +137,10 @@
                     <td>{{ p.fecha_inicio }}</td>
                     <td>{{ p.descripcion }}</td>
                     <td>{{ p.fecha_limite }}</td>
+                    
                     {% if user.is_authenticated %}
                     <td>
-                        <a href="/" class="btn btn-edit">Editar</a>
+                        <a href="{% url 'editarPresupuesto' p.id %}" class="btn btn-edit">Editar</a>
                         <form action="/" method="post" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-delete">Eliminar</button>

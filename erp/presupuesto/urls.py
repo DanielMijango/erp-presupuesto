@@ -7,6 +7,7 @@ urlpatterns = [
     path('crearPresupuesto/', views.crearPresupuesto_View, name='crearPresupuesto'),
     path('mostrarPresupuestos/', views.mostrarPresupuesto_View, name='mostrarPresupuestos'),
     path('gestionarCostos/', views.gestionarCostos_View, name='gestionarCostos'),
+    path('editarPresupuesto/<int:presupuesto_id>/', views.editarPresupuesto, name='editarPresupuesto'),
     path('admin/', admin.site.urls),
     path('registro/', views.registro_view, name='registro'),
     path('logout/', views.cerrarSesion_view, name='logout'),

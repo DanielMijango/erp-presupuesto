@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
@@ -22,6 +22,24 @@ def crearPresupuesto_View(request):
              new_Presupuesto.save()
              print(new_Presupuesto)
              return redirect('gestionarCostos/')
+    
+def editarPresupuesto(request, presupuesto_id):
+     
+     if request.method == 'GET':
+      presupuesto=get_object_or_404(Presupuesto,pk=presupuesto_id)
+      form=PresupuestoForm(instance=presupuesto)
+      return render(request,'editarPresupuesto.html',{'presupuesto':presupuesto, 'form':form})    
+     else:
+          try:
+               presupuesto=get_object_or_404(Presupuesto,pk=presupuesto_id)
+               form=PresupuestoForm(request.POST,instance=presupuesto)
+               form.save()
+               return redirect('/gestionarCostos')
+          
+          except ValueError:
+               return render(request,'editarPresupuesto.html',{'presupuesto':presupuesto, 'form':form , 'error':"Se a producido un error"})
+               
+
 
 def mostrarPresupuesto_View(request):
      presupuestos=Presupuesto.objects.all()
@@ -30,7 +48,7 @@ def mostrarPresupuesto_View(request):
 def gestionarCostos_View(request)  : 
         presupuestos=Presupuesto.objects.all()
         return render(request,'gestionarCostos.html',{'presupuestos':presupuestos})
-       
+
 
 def registro_view(request): 
     if request.method == 'GET':
