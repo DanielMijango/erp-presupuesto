@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404
+from django.urls import reverse
 from django.contrib.auth import authenticate, login , logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
@@ -22,8 +23,9 @@ def crearPresupuesto_View(request):
              form = PresupuestoForm(request.POST)
              new_Presupuesto = form.save(commit=False)
              new_Presupuesto.save()
-             print(new_Presupuesto)
-             return redirect('gestionarCostos/')
+                        
+             return redirect(f'/costo/{new_Presupuesto.id}/')
+
     
 def editarPresupuesto(request, presupuesto_id):
      

@@ -88,7 +88,13 @@
         margin-bottom: 20px;
         text-align: center;
     }
-
+.costo_item{
+    color: #512985;
+    font-size:18px;
+    background-color:#d1c7c7;
+    border-radius: 10px;
+    margin: 10px;
+}
     /* Hover effects */
     .budget-list .agregar-btn:hover,
     .budget-list .modify-btn:hover,
@@ -114,13 +120,13 @@
                 <li>
                     <span><b>{{ p.nombre }}</b>
                         <p>{{ p.descripcion }}</p>
-
+                        <p>Costos del presupuesto:</p>
                         <!-- Botón Agregar costo -->
                         <a href="/costo/{{ p.id }}/" class="btn btn-primary agregar-btn">Agregar costo</a>
-
+                       
                         <ul>
                             {% for costo in p.costos.all %}
-                            <li>El costo es de: {{ costo.monto }}
+                            <li class="costo_item"><b>El costo es de: {{ costo.monto }}$</b>
                                 <div class="button-group">
                                     <form action="/eliminarCosto/{{costo.id}}/" method="post" style="display:inline;"> 
                                         {% csrf_token %}
