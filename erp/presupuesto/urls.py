@@ -10,6 +10,8 @@ urlpatterns = [
     path('gestionarCostos/', views.gestionarCostos_View, name='gestionarCostos'),
     path('editarPresupuesto/<int:presupuesto_id>/', views.editarPresupuesto, name='editarPresupuesto'),
     path('eliminarPresupuesto/<int:presupuesto_id>/', views.eliminarPresupuesto, name='eliminarPresupuesto'),
+    path('eliminarCosto/<int:costo_id>/', views.eliminarCosto, name='eliminar_costo'),
+    path('editarCosto/<int:costo_id>/', views.editarCosto, name='editar_costo'),
     path('admin/', admin.site.urls),
     path('registro/', views.registro_view, name='registro'),
     path('logout/', views.cerrarSesion_view, name='logout'),

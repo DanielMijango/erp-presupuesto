@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Estilos para el cuerpo */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #2d2865;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Estilos para el contenedor principal */
+    .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        margin-top: 120px;
+    }
+
+    /* Estilos para el título principal */
+    .container h1 {
+        margin-bottom: 20px;
+    }
+
+    /* Estilos para los campos de entrada, área de texto y botones */
+    .container input, .container textarea, .container button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Estilos específicos para los campos de fecha */
+    .container input[type="date"] {
+        padding-left: 8px;
+    }
+
+    /* Estilos para el botón de "Crear Solicitud" */
+    .container .submit-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Efecto hover para el botón "Crear Solicitud" */
+    .container .submit-button:hover {
+        background-color: #218838;
+        
+    }
+
+    /* Estilos para el botón de "Cancelar" */
+    .container .cancel-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Efecto hover para el botón "Cancelar" */
+    .container .cancel-button:hover {
+        background-color: #c82333;
+    }
+
+    /* Estilos para las etiquetas de los campos */
+    .container label {
+        display: block;
+        margin: 10px 0 5px;
+        text-align: center;
+    }
+
+    /* Contenedor para los botones */
+    .button-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .button-group button {
+        width: 48%;
+    }
+</style>
+
+<!-- Contenedor principal -->
+<div class="container">
+    <!-- Título principal -->
+    <h1>Editar costo</h1>
+
+    <!-- Formulario para ingresar los detalles del presupuesto -->
+    <form method="post">
+        {% csrf_token %}
+        <!-- Usando el formulario Django form -->
+        {{ form.as_p }}
+        
+        <!-- Grupo de botones para "Crear Solicitud" y "Cancelar" -->
+        <div class="button-group">
+            <button type="submit" class="submit-button">Guardar</button>
+           
+        </div>
+    </form>
+</div>
+{% endblock %}

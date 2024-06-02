@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.db  import IntegrityError
 from .forms import PresupuestoForm
-from .models import Presupuesto
+from .models import Presupuesto,Costo
 from .forms import CostoForm
+
 
 def home_view(request):
     return render(request, 'home.html')
@@ -69,6 +70,30 @@ def agregarCosto_View(request, presupuesto):
             'form': CostoForm,
             'error': 'dato invalido'     
      } )   
+        
+def editarCosto(request, costo_id):
+     
+     if request.method == 'GET':
+      costo=get_object_or_404(Costo,pk=costo_id)
+      form=CostoForm(instance=costo)
+      return render(request,'editarCosto.html',{'form':form})    
+     else:
+          try:
+               costo=get_object_or_404(Costo,pk=costo_id)
+               form=CostoForm(request.POST,instance=costo)
+               form.save()
+               return redirect('/gestionarCostos')
+          
+          except ValueError:
+               return render(request,'editarCosto.html',{'form':form , 'error':"Se a producido un error"})
+          
+def eliminarCosto(request,costo_id):
+     
+    costo=get_object_or_404(Costo,pk=costo_id)
+    
+    if request.method =='POST':
+         costo.delete()
+         return redirect('/gestionarCostos')
              
 
 

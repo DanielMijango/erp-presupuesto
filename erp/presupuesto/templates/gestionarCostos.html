@@ -5,7 +5,7 @@
     /* Estilos generales */
     body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
+        background-color: #6b6b6b;
         margin: 0;
         padding: 0;
     }
@@ -70,9 +70,17 @@
     .budget-list .modify-btn,
     .budget-list .delete-btn {
         cursor: pointer;
-        
         border-radius: 5px;
         margin: 5px;
+        color: #fff;
+    }
+
+    .budget-list .modify-btn {
+        background-color: #28a745;
+    }
+
+    .budget-list .delete-btn {
+        background-color: #f44336;
     }
 
     h1 {
@@ -114,8 +122,11 @@
                             {% for costo in p.costos.all %}
                             <li>El costo es de: {{ costo.monto }}
                                 <div class="button-group">
-                                    <button class="btn btn-success modify-btn">Modificar costos</button>
-                                    <button class="btn btn-danger delete-btn">Borrar costos</button>
+                                    <form action="/eliminarCosto/{{costo.id}}/" method="post" style="display:inline;"> 
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger delete-btn">Borrar costo</button>
+                                    </form>
+                                    <a href="/editarCosto/{{ costo.id }}/" class="btn btn-success modify-btn">Editar Costo</a>
                                 </div>
                             </li>
                             {% endfor %}
