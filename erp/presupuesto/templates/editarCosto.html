@@ -4,25 +4,39 @@
 <style>
     /* Estilos para el cuerpo */
     body {
-        font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #2d2865;
+        font-family: Arial, sans-serif;
+        background: url('https://it.ditech.es/wp-content/uploads/2024/03/Azul-Isometrico-Elementos-y-Maquetas-Tecnologia-en-la-Educacion-Presentacion-de-Tecnologia-8-1024x576.png') no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        position: relative;
+    }
+
+    /* Superposición oscura */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.63); /* Ajusta el nivel de opacidad aquí */
+        z-index: 1;
     }
 
     /* Estilos para el contenedor principal */
     .container {
+        position: relative;
+        z-index: 2;
         text-align: center;
         background-color: #fff;
         padding: 30px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         width: 300px;
-        margin-top: 120px;
     }
 
     /* Estilos para el título principal */
@@ -44,7 +58,7 @@
         padding-left: 8px;
     }
 
-    /* Estilos para el botón de "Crear Solicitud" */
+    /* Estilos para el botón de "Guardar" */
     .container .submit-button {
         background-color: #28a745;
         color: white;
@@ -52,10 +66,9 @@
         cursor: pointer;
     }
 
-    /* Efecto hover para el botón "Crear Solicitud" */
+    /* Efecto hover para el botón "Guardar" */
     .container .submit-button:hover {
         background-color: #218838;
-        
     }
 
     /* Estilos para el botón de "Cancelar" */
@@ -89,6 +102,9 @@
     }
 </style>
 
+<!-- Superposición oscura -->
+<div class="overlay"></div>
+
 <!-- Contenedor principal -->
 <div class="container">
     <!-- Título principal -->
@@ -100,10 +116,9 @@
         <!-- Usando el formulario Django form -->
         {{ form.as_p }}
         
-        <!-- Grupo de botones para "Crear Solicitud" y "Cancelar" -->
+        <!-- Grupo de botones para "Guardar" y "Cancelar" -->
         <div class="button-group">
             <button type="submit" class="submit-button">Guardar</button>
-           
         </div>
     </form>
 </div>
