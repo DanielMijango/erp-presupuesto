@@ -5,6 +5,7 @@ app_name = 'presupuesto'
 urlpatterns = [
     path('', views.home_view, name='home'),
     path('crearPresupuesto/', views.crearPresupuesto_View, name='crearPresupuesto'),
+    path('costo/<int:presupuesto>/', views.agregarCosto_View, name='costo'),
     path('mostrarPresupuestos/', views.mostrarPresupuesto_View, name='mostrarPresupuestos'),
     path('gestionarCostos/', views.gestionarCostos_View, name='gestionarCostos'),
     path('editarPresupuesto/<int:presupuesto_id>/', views.editarPresupuesto, name='editarPresupuesto'),

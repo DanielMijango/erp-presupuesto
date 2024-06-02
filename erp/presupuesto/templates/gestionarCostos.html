@@ -18,9 +18,6 @@
         margin-top: 100px;
     }
 
-    /* Encabezado */
-
-
     /* Estilo de la lista de presupuestos */
     .budget-list {
         background: #fff;
@@ -45,29 +42,37 @@
         align-items: center;
         padding: 10px;
         border-bottom: 1px solid #ccc;
+        position: relative; /* Añadido para posicionamiento */
     }
 
     .budget-list li span {
         flex-grow: 1;
     }
 
-    .budget-list .agregar-btn,
-    .budget-list .modify-btn,
-    .budget-list .delete-btn {
-        background: #28a746;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-left: 5px;
-        border-radius: 3px;
+    .budget-list .button-group {
+        display: flex;
+        justify-content: flex-end;
     }
 
-    .budget-list .delete-btn {
-        background: #e74c3c;
-    }
     .budget-list .agregar-btn {
         background: #2e2ae9;
+        color: #fff;
+        border: none;
+        padding: 10px 80px; /* Aumentar tamaño */
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        margin: 20px;
+    }
+
+    .budget-list .modify-btn,
+    .budget-list .delete-btn {
+        cursor: pointer;
+        
+        border-radius: 5px;
+        margin: 5px;
     }
 
     h1 {
@@ -77,14 +82,15 @@
     }
 
     /* Hover effects */
-   
+    .budget-list .agregar-btn:hover,
     .budget-list .modify-btn:hover,
-    .budget-list .agregar-btn,
     .budget-list .delete-btn:hover {
         opacity: 0.8;
     }
 </style>
-</head>
+
+<!-- Integración de Bootstrap -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 <body>
     <!-- Contenedor principal -->
@@ -92,25 +98,37 @@
 
         <h1>Gestión de Costos</h1>
 
-
         <!-- Lista de presupuestos -->
         <section class="budget-list">
             <h2>Presupuestos</h2>
             <ul>
                 {% for p in presupuestos %}
                 <li>
-                    <span><b>{{p.nombre}}</b>
-                        <p>{{p.descripcion}}</p>
+                    <span><b>{{ p.nombre }}</b>
+                        <p>{{ p.descripcion }}</p>
+
+                        <!-- Botón Agregar costo -->
+                        <a href="/costo/{{ p.id }}/" class="btn btn-primary agregar-btn">Agregar costo</a>
+
+                        <ul>
+                            {% for costo in p.costos.all %}
+                            <li>El costo es de: {{ costo.monto }}
+                                <div class="button-group">
+                                    <button class="btn btn-success modify-btn">Modificar costos</button>
+                                    <button class="btn btn-danger delete-btn">Borrar costos</button>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
                     </span>
-                    
-                    <button class="agregar-btn">Agregar costo</button>
-                    <button class="modify-btn">Modificar costos</button>
-                    <button class="delete-btn">Borrar costos</button>
                 </li>
                 {% endfor %}
-                
             </ul>
         </section>
     </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 {% endblock %}

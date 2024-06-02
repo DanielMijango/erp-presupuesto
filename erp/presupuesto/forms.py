@@ -2,6 +2,7 @@
 from django.forms import ModelForm
 from django import forms
 from .models import Presupuesto
+from .models import Costo
 
 class PresupuestoForm(ModelForm):
     class Meta:
@@ -11,3 +12,9 @@ class PresupuestoForm(ModelForm):
             'fecha_inicio': forms.DateInput(attrs={'type': 'date'}),
             'fecha_limite': forms.DateInput(attrs={'type': 'date'}),
         }
+          
+
+class CostoForm(ModelForm):
+    class Meta:
+         model = Costo
+         fields = ['monto']

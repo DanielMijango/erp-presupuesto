@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.db  import IntegrityError
 from .forms import PresupuestoForm
 from .models import Presupuesto
+from .forms import CostoForm
 
 def home_view(request):
     return render(request, 'home.html')
@@ -47,7 +48,29 @@ def eliminarPresupuesto(request,presupuesto_id):
          presupuesto.delete()
          return redirect('/mostrarPresupuestos')
           
+def agregarCosto_View(request, presupuesto):
      
+     if request.method == 'GET':
+             
+        return render (request,'costo.html',{
+        'form': CostoForm     
+     } )   
+
+     else :
+        try:
+            presupuesto=get_object_or_404(Presupuesto,pk=presupuesto)
+            form =CostoForm(request.POST)
+            newCosto = form.save(commit=False) 
+            newCosto.presupuesto = presupuesto
+            newCosto.save()
+            return redirect('/gestionarCostos')
+        except ValueError:
+            return render (request,'costo.html',{
+            'form': CostoForm,
+            'error': 'dato invalido'     
+     } )   
+             
+
 
 def mostrarPresupuesto_View(request):
      presupuestos=Presupuesto.objects.all()

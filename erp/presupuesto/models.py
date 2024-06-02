@@ -20,8 +20,6 @@ class Presupuesto(models.Model):
 
 class Costo(models.Model):
     presupuesto = models.ForeignKey(Presupuesto, related_name='costos', on_delete=models.CASCADE)
-    fecha = models.DateField()
-    descripcion = models.TextField()
     monto = models.DecimalField(max_digits=10, decimal_places=2)
 
     def _str_(self):

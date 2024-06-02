@@ -26,5 +26,6 @@ urlpatterns = [
     path('registro/', include('presupuesto.urls')),
     path('logout/', include('presupuesto.urls')),
     path('signin/', include('presupuesto.urls')),
+    path('costo/', include('presupuesto.urls')),
   
 ]
