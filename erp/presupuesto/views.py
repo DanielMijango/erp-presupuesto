@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.db  import IntegrityError
-from.forms import PresupuestoForm
+from .forms import PresupuestoForm
+from .models import Presupuesto
 
 def home_view(request):
     return render(request, 'home.html')
@@ -18,16 +19,18 @@ def crearPresupuesto_View(request):
     else:
              form = PresupuestoForm(request.POST)
              new_Presupuesto = form.save(commit=False)
-             new_Presupuesto.user = request.user
              new_Presupuesto.save()
-
+             print(new_Presupuesto)
              return redirect('gestionarCostos/')
 
 def mostrarPresupuesto_View(request):
-     return render(request,'mostrarPresupuestos.html')
+     presupuestos=Presupuesto.objects.all()
+     return render(request,'mostrarPresupuestos.html',{'presupuestos':presupuestos})
 
 def gestionarCostos_View(request)  : 
-       return render(request,'gestionarCostos.html')
+        presupuestos=Presupuesto.objects.all()
+        return render(request,'gestionarCostos.html',{'presupuestos':presupuestos})
+       
 
 def registro_view(request): 
     if request.method == 'GET':
@@ -54,6 +57,8 @@ def registro_view(request):
 } )
 
 
+    
+     
 def cerrarSesion_view (request):
     logout(request)
     return  redirect('/')
