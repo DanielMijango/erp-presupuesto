@@ -8,6 +8,7 @@ urlpatterns = [
     path('mostrarPresupuestos/', views.mostrarPresupuesto_View, name='mostrarPresupuestos'),
     path('gestionarCostos/', views.gestionarCostos_View, name='gestionarCostos'),
     path('editarPresupuesto/<int:presupuesto_id>/', views.editarPresupuesto, name='editarPresupuesto'),
+    path('eliminarPresupuesto/<int:presupuesto_id>/', views.eliminarPresupuesto, name='eliminarPresupuesto'),
     path('admin/', admin.site.urls),
     path('registro/', views.registro_view, name='registro'),
     path('logout/', views.cerrarSesion_view, name='logout'),

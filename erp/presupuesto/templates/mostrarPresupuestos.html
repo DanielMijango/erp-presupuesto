@@ -140,10 +140,10 @@
                     
                     {% if user.is_authenticated %}
                     <td>
-                        <a href="{% url 'editarPresupuesto' p.id %}" class="btn btn-edit">Editar</a>
-                        <form action="/" method="post" style="display:inline;">
+                        <a href="/editarPresupuesto/{{ p.id }}/" class="btn btn-edit">Editar</a>
+                        <form action="/eliminarPresupuesto/{{ p.id }}/" method="post" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-delete">Eliminar</button>
+                            <button type="submit" class="btn btn-delete" >Eliminar</button>
                         </form>
                     </td>
                     {% endif %}

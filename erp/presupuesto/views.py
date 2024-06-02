@@ -34,12 +34,20 @@ def editarPresupuesto(request, presupuesto_id):
                presupuesto=get_object_or_404(Presupuesto,pk=presupuesto_id)
                form=PresupuestoForm(request.POST,instance=presupuesto)
                form.save()
-               return redirect('/gestionarCostos')
+               return redirect('/mostrarPresupuestos')
           
           except ValueError:
                return render(request,'editarPresupuesto.html',{'presupuesto':presupuesto, 'form':form , 'error':"Se a producido un error"})
                
-
+def eliminarPresupuesto(request,presupuesto_id):
+     
+    presupuesto=get_object_or_404(Presupuesto,pk=presupuesto_id)
+    
+    if request.method =='POST':
+         presupuesto.delete()
+         return redirect('/mostrarPresupuestos')
+          
+     
 
 def mostrarPresupuesto_View(request):
      presupuestos=Presupuesto.objects.all()
