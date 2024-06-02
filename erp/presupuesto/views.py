@@ -12,10 +12,16 @@ def home_view(request):
     return render(request, 'home.html')
 
 def crearPresupuesto_View(request):
-    return render(request, 'crearpresupuesto.html',{
-         'form': PresupuestoForm
+    if request.method == 'GET':
+             return render(request, 'crearpresupuesto.html',{
+         'form': PresupuestoForm} )
+    else:
+             form = PresupuestoForm(request.POST)
+             new_Presupuesto = form.save(commit=False)
+             new_Presupuesto.user = request.user
+             new_Presupuesto.save()
 
-    } )
+             return redirect('gestionarCostos/')
 
 def mostrarPresupuesto_View(request):
      return render(request,'mostrarPresupuestos.html')
