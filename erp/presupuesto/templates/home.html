@@ -7,7 +7,7 @@
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        background: url('https://it.ditech.es/wp-content/uploads/2024/03/6-1024x576.png') no-repeat center center fixed;
+        background: url('https://images.pexels.com/photos/374894/pexels-photo-374894.jpeg?cs=srgb&dl=pexels-burst-374894.jpg&fm=jpg') no-repeat center center fixed;
         background-size: cover;
         height: 100vh;
         position: relative; /* Para que los elementos internos sean posicionados relativos a este contenedor */
@@ -21,6 +21,7 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.548); /* Color negro con 50% de opacidad */
+        animation: fadeIn 1.5s ease-out forwards; /* Animación de entrada */
     }
 
     /* Estilos para el texto */
@@ -32,6 +33,43 @@
         color: white;
         text-align: center;
         font-size: 45px;
+        opacity: 0; /* Inicialmente oculto */
+        animation: slideIn 1s ease-out forwards 0.5s; /* Animación de entrada */
+    }
+
+    /* Estilos para el concepto */
+    .concept {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        opacity: 0; /* Inicialmente oculto */
+        animation: fadeIn 1s ease-out forwards 1.5s; /* Animación de entrada */
+    }
+
+    /* Animación de entrada para la superposición */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 0.548;
+        }
+    }
+
+    /* Animación de entrada para el texto y el concepto */
+    @keyframes slideIn {
+        from {
+            transform: translate(-50%, -70%); /* Inicia arriba del centro */
+            opacity: 0;
+        }
+        to {
+            transform: translate(-50%, -50%); /* Llega al centro */
+            opacity: 1;
+        }
     }
 </style>
 
@@ -43,8 +81,10 @@
         <h1><b>Módulo de Presupuestos</b></h1>
         <!-- Puedes agregar más contenido aquí -->
     </div>
+    <div class="concept">
+        <p>PROYECTO PARA HDP115. CARLOS MIJANGO-DAVID CRUZ</p>
+        <!-- Puedes agregar más contenido o estilos aquí -->
+    </div>
     {% endblock %}
 </div>
 {% endblock %}
-
-
